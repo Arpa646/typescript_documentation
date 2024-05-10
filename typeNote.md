@@ -34,7 +34,8 @@ What is TypeScript?
 
 - Typescript is a object oriented programmig language based on javascript.
 - it is a superset of js
-  Why TypeScript?
+
+Why TypeScript?
 
 - JS Check types in run time while typescript add static typing to JS so we can handle errors before running the program. We can handle errors beofre running the program.
 - increase readability and code quality
