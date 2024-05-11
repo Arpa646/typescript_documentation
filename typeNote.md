@@ -412,3 +412,150 @@ These basic types provide a foundation for specifying the types of variables and
    }
    requestHandler("GET");
    ```
+
+
+
+   8. **Type Assertion**: when we r ensure about type we can assert type. Type assertion is useful when you know more about the types than TypeScript does. 
+   ```tsc
+   const anything2:any='23'
+const f:number=(anything2 as string).length;
+```
+   9. **Type Assertion**:
+
+
+
+10. **Interfaces**:
+```js
+// without interface
+let users: {
+  id: number,
+  name: string,
+  age: number,
+}[] = [];
+
+let user1: {
+  id: number,
+  name: string,
+  age: number,
+} = {
+  id: 1,
+  name: 'Mr. Potato',
+  age: 32,
+};
+
+let user2: {
+  id: number,
+  name: string,
+  age: number,
+} = { id: 2, name: 'Ms. Tomato', age: 21 };
+
+users.push(user1);
+users.push(user2);
+
+const printUserInfo = (user: { id: number, name: string, age: number }) => {
+  console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
+};
+
+users.forEach((user) => printUserInfo(user));
+
+// with interface
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+let users: User[] = [];
+
+let user1: User = { id: 1, name: 'Mr. Potato', age: 32 };
+let user2: User = { id: 2, name: 'Ms. Tomato', age: 21 };
+
+users.push(user1);
+users.push(user2);
+
+const printUserInfo = (user: User) => {
+  console.log(`userid = ${user.id}, name = ${user.name}, age = ${user.age}`);
+};
+
+users.forEach((user) => printUserInfo(user));
+```
+
+```js
+    // class implements interface
+    interface UserFormatter {
+      formatUser: () => string;
+    }
+
+      export class User implements UserFormatter {
+        constructor(private fullName: string, private age: number) {}
+
+        formatUser = () => {
+          return `name: ${this.fullName}, age: ${this.age}`;
+        };
+      }
+
+      let user = new User("Mr. Potato", 32);
+      console.log(user);
+      console.log(user.formatUser());
+```
+
+10. **Interface vs Type**
+1.interfaces only use for non primitive but type can use both prim and non prim
+2.interfaces extend with extent keyword
+3.in type alias here use intersection
+```js
+
+```
+
+11.**Genereric Type**
+```js
+//generic type
+
+//when we have to use dynamic data type then we use generic
+function printUserInfo<T>(userId:T):void
+    {
+    console.log(userId)
+}
+
+console.log(printUserInfo<number>(78))
+
+
+//
+type added =<x, y>(one: x, two: y)=>[x,y];
+
+interface added2<x, y>
+{
+    (one: x, two: y):[x,y];
+}
+const added:added = (one, two) => {
+    return [one * two];
+}
+
+console.log(added <number,number>(1, 3));
+
+
+
+
+
+type generictupple<T>=Array<T>
+const mentor:generictupple<number>=[1,2,3]
+```
+
+
+**contrain in typescript**
+```js
+
+///contrains --forces some data must be contains in generic
+//constrain using of key
+type useer={
+    name:string;
+    age:number;
+
+}
+
+const genecontrains=<T extends keyof useer>(student:T)=>{
+return  {...student}
+}
+
+console.log(genecontrains<useer>({name:"arpa",age:66}))
+```
